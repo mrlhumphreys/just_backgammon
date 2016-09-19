@@ -1,3 +1,4 @@
+require 'forwardable'
 require 'just_backgammon/common'
 require 'just_backgammon/point'
 

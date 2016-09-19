@@ -1,3 +1,4 @@
+require 'forwardable'
 require 'just_backgammon/combined_move'
 
 module JustBackgammon

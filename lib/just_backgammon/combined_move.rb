@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module JustBackgammon
 
   # = CombinedMove
