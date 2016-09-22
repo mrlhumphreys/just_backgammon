@@ -804,6 +804,32 @@ describe JustBackgammon::GameState do
         end
       end
 
+      describe 'with both off board' do
+        let(:game) {
+          JustBackgammon::GameState.new({
+            current_player_number: 1,
+            current_phase: 'move',
+            dice: [
+              { number: 4 },
+              { number: 2 }
+            ],
+            bar: { pieces: [] },
+            points: [
+              { number: 21, pieces: [{owner: 1}] },
+              { number: 22, pieces: [] },
+              { number: 23, pieces: [{owner: 1}] }
+            ],
+            off_board: { pieces: [] }
+          })
+        }
+        let(:list) { [ {from: 23, to: 'off_board'}, {from: 21, to: 'off_board'} ] }
+
+        it 'must not have error' do
+          game.move(player, list)
+          assert_empty game.errors
+        end
+      end
+
       describe 'without dice matching' do
         let(:game) {
           JustBackgammon::GameState.new({

@@ -126,7 +126,7 @@ module JustBackgammon
     #
     # @return [Boolean]
     def dice_mismatch?(current_player_number, dice)
-      unallocated = dice.numbers
+      unallocated = dice.numbers.sort
       allocated = []
 
       moves.each do |m|
@@ -145,7 +145,6 @@ module JustBackgammon
           allocated.push(die)
         end
       end
-
       allocated.size != moves.size
     end
   end
