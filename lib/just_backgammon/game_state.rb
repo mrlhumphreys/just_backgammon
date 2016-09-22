@@ -248,28 +248,15 @@ module JustBackgammon
         @errors.push JustBackgammon::BlockedError.new
       when move_list.any_wrong_direction?(current_player_number)
         @errors.push JustBackgammon::WrongDirectionError.new
-      when !move_list.all_moves_from_bar? && \
-        move_list.number_of_moves_from_bar != bar.number_of_pieces_owned_by_player(current_player_number) && \
-        points.destinations(bar, dice, current_player_number).size >= move_list.number_of_moves_from_bar
+      when move_list.pieces_still_on_bar?(current_player_number, points, dice, bar)
         @errors.push JustBackgammon::PiecesOnBarError.new
-      when move_list.any_bear_off? && \
-        !(points.not_home(current_player_number).map(&:number) - move_list.map { |m| m.from.number }).empty?
+      when move_list.cannot_bear_off?(current_player_number, points)
         @errors.push JustBackgammon::BearOffError.new
-      when current_player_has_moves? && move_list.dice_mismatch?(current_player_number, dice)
+      when move_list.dice_mismatch?(current_player_number, points, dice, bar)
         @errors.push JustBackgammon::DiceMismatchError.new
       end
 
       @errors.none?
-    end
-
-    def current_player_has_moves?  # :nodoc:
-      if bar.any_pieces_for_player?(@current_player_number)
-        @points.destinations(bar, @dice, @current_player_number).any?
-      else
-        @points.owned_by_player(@current_player_number).any? do |p|
-          @points.destinations(p, @dice, @current_player_number).any?
-        end
-      end
     end
 
     def perform_move(list)  # :nodoc:
@@ -311,22 +298,22 @@ module JustBackgammon
       end
     end
 
-    def find_point(n)  # :nodoc:
-      case n
+    def find_point(identifier)  # :nodoc:
+      case identifier
       when 'bar'
         bar
       when 'off_board'
         off_board
       else
-        @points.find_by_number(n.to_i)
+        @points.find_by_number(identifier.to_i)
       end
     end
 
-    def sanitize_list(list)  # :nodoc:
-      move_list = list.map do |i|
-        JustBackgammon::Move.new({ from: find_point(i[:from]),  to: find_point(i[:to]) })
+    def sanitize_list(move_list)  # :nodoc:
+      moves = move_list.map do |move|
+        JustBackgammon::Move.new({ from: find_point(move[:from]),  to: find_point(move[:to]) })
       end
-      JustBackgammon::MoveList.new(moves: move_list)
+      JustBackgammon::MoveList.new(moves: moves)
     end
   end
 end

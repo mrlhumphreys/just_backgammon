@@ -25,27 +25,32 @@ module JustBackgammon
     # @return [Array<Move>] the legs of the combined move.
     attr_reader :legs
 
-    def_delegator :legs, :size
-
-    # Does the combined move start from a point?
+    # Checks if the combined move start from a point.
     #
     # @return [Boolean]
     def from_point?
       first_leg.instance_of?(JustBackgammon::Point) if first_leg
     end
 
-    # Does the combined move start with an empty point?
+    # Checks if the combined move start with an empty point.
     #
     # @return [Boolean]
     def empty?
       first_leg.empty? if first_leg
     end
 
-    # Does the combined move have pieces owned by the opponent?
+    # Checks if the combined move have pieces owned by the opponent.
     #
     # @return [Boolean]
     def owned_by_opponent?(player_number)
       first_leg.owned_by_opponent?(player_number) if first_leg
+    end
+
+    # Checks if the combined move have pieces owned by the opponent.
+    #
+    # @return [Boolean]
+    def multi_leg?
+      legs.size > 2
     end
 
     private
