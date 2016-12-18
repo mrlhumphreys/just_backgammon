@@ -83,7 +83,7 @@ module JustBackgammon
     #   the specified player number.
     #
     # @return [Piece,NilClass]
-    def pop_for_player(player_number)
+    def pop(player_number)
       p = pieces.find { |p| p.owner == player_number }
       pieces.delete(p)
     end

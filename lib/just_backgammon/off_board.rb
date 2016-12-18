@@ -63,6 +63,10 @@ module JustBackgammon
       @pieces.push(piece)
     end
 
+    def hittable?(_=nil)
+      false
+    end
+
     # A hashed serialized representation of off board.
     #
     # @return [Hash]

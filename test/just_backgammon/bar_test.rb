@@ -51,17 +51,17 @@ describe JustBackgammon::Bar do
     end
   end
 
-  describe 'pop_for_player' do
+  describe 'pop' do
     let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 2}]) }
 
     it 'must remove a piece from the bar for that player' do
-      bar.pop_for_player(1)
+      bar.pop(1)
       assert_equal 1, bar.pieces.size
       assert_equal 2, bar.pieces.first.owner
     end
 
     it 'must return that piece' do
-      piece = bar.pop_for_player(1)
+      piece = bar.pop(1)
       assert_equal 1, piece.owner
     end
   end

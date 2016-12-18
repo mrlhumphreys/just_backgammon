@@ -79,6 +79,7 @@ module JustBackgammon
       @points = JustBackgammon::PointSet.load(points: points)
       @off_board = JustBackgammon::OffBoard.load(off_board)
       @errors = []
+      @last_change = {}
     end
 
     # Instantiates a new GameState object in the starting position
@@ -147,6 +148,9 @@ module JustBackgammon
     # @return [Array<Error>] errors if any.
     attr_reader :errors
 
+    # @return [Hash] the last change made.
+    attr_reader :last_change
+
     # Rolls the dice
     #
     # Two dice are rolled and returns true on success.
@@ -172,6 +176,7 @@ module JustBackgammon
       else
         @dice.roll
         step
+        @last_change = { type: 'roll', data: { player_number: player_number, dice: @dice.as_json } }
       end
 
       @errors.none?
@@ -204,6 +209,7 @@ module JustBackgammon
       elsif move_valid?(move_list)
         perform_move(move_list)
         step
+        @last_change = { type: 'move', data: { player_number: player_number, list: list }}
       end
 
       @errors.none?
@@ -261,18 +267,12 @@ module JustBackgammon
 
     def perform_move(list)  # :nodoc:
       list.each do |move|
-        from = find_point(move.from.number)
-        to = find_point(move.to.number)
+        from = move.from
+        to = move.to
 
-        if to.is_a?(JustBackgammon::Point) && to.owned_by_opponent?(current_player_number) && to.blot?
-          @bar.push(to.pop)
-        end
+        @bar.push(to.pop) if to.hittable?(current_player_number)
 
-        popped = if from.is_a?(JustBackgammon::Bar)
-          from.pop_for_player(current_player_number)
-        else
-          from.pop
-        end
+        popped = from.pop(current_player_number)
 
         to.push(popped)
       end

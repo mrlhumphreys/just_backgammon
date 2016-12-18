@@ -83,7 +83,6 @@ describe JustBackgammon::GameState do
     })
   }
 
-
   describe 'initializing a game' do
     let(:arguments) {
       {
@@ -176,6 +175,14 @@ describe JustBackgammon::GameState do
           game_in_roll_phase.roll(player)
           assert_equal 'move', game_in_roll_phase.current_phase
         end
+
+        it 'must record the dice in the last change' do
+          game_in_roll_phase.roll(player)
+          last_change = game_in_roll_phase.last_change
+          assert_equal 'roll', last_change[:type]
+          assert_equal player, last_change[:data][:player_number]
+          refute_nil last_change[:data][:dice].first[:number]
+        end
       end
 
       describe 'during the move phase' do
@@ -257,6 +264,12 @@ describe JustBackgammon::GameState do
 
           it 'must return true' do
             assert game_in_move_phase.move(player, valid_move)
+          end
+
+          it 'must store the move details as the last change' do
+            game_in_move_phase.move(player, valid_move)
+            last_change = { type: 'move', data: { player_number: player, list: valid_move} }
+            assert_equal last_change, game_in_move_phase.last_change
           end
         end
 
@@ -949,7 +962,7 @@ describe JustBackgammon::GameState do
 
     describe 'with a game where no player has 15 pieces off board' do
       it 'must have no player as the winner' do
-        assert_equal nil, game_in_roll_phase.winner
+        assert_nil game_in_roll_phase.winner
       end
     end
   end

@@ -34,6 +34,12 @@ Moves can be made by passing in the player number, and an array of moves each co
   game_state.move(1, [{from: 1, to: 2}]])
 ```
 
+The last change with all its details are found in the `last_change` attribute
+
+```ruby
+  game_state.last_change
+```
+
 If something happens errors may be found in the errors attribute
 
 ```ruby

@@ -42,7 +42,7 @@ module JustBackgammon
     # Removes a piece and returns it.
     #
     # @return [Piece,NilClass]
-    def pop
+    def pop(_=nil)
       @pieces.pop
     end
 
@@ -93,6 +93,10 @@ module JustBackgammon
       else
         true
       end
+    end
+
+    def hittable?(player_number)
+      owned_by_opponent?(player_number) && blot?
     end
 
     # A hashed serialized representation of the bar.
