@@ -2,7 +2,7 @@ require "test_helper"
 
 describe JustBackgammon::Point do
   describe 'pop' do
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}], number: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 1, owner: 1}], number: 1) }
 
     it 'must remove a piece from the point' do
       point.pop
@@ -16,8 +16,8 @@ describe JustBackgammon::Point do
   end
 
   describe 'push' do
-    let(:piece) { JustBackgammon::Piece.new(owner: 1) }
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}], number: 1) }
+    let(:piece) { JustBackgammon::Piece.new(id: 1, owner: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 2, owner: 1}], number: 1) }
 
     it 'must add a piece to the point' do
       point.push(piece)
@@ -34,7 +34,7 @@ describe JustBackgammon::Point do
   end
 
   describe 'a point with pieces' do
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}], number: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 1, owner: 1}], number: 1) }
 
     it 'must not be empty' do
       refute point.empty?
@@ -42,7 +42,7 @@ describe JustBackgammon::Point do
   end
 
   describe 'a point with pieces owned by player 1' do
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}], number: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 1, owner: 1}], number: 1) }
 
     it 'must be owned by player 1' do
       assert point.owned_by_player?(1)
@@ -62,7 +62,7 @@ describe JustBackgammon::Point do
   end
 
   describe 'a point with one piece' do
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}], number: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 1, owner: 1}], number: 1) }
 
     it 'must not be blocked' do
       refute point.blocked?
@@ -70,7 +70,7 @@ describe JustBackgammon::Point do
   end
 
   describe 'a point with two pieces' do
-    let(:point) { JustBackgammon::Point.new(pieces: [{owner: 1}, {owner: 1}], number: 1) }
+    let(:point) { JustBackgammon::Point.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}], number: 1) }
 
     it 'must be blocked' do
       assert point.blocked?

@@ -2,7 +2,7 @@ require "test_helper"
 
 describe JustBackgammon::Die do
   describe 'roll' do
-    let(:die) { JustBackgammon::Die.new(number: nil) }
+    let(:die) { JustBackgammon::Die.new(id: 1, number: nil) }
 
     it 'must set the number to a value from 1 to 6' do
       die.roll
@@ -11,7 +11,7 @@ describe JustBackgammon::Die do
   end
 
   describe 'reset' do
-    let(:die) { JustBackgammon::Die.new(number: 5) }
+    let(:die) { JustBackgammon::Die.new(id: 1, number: 5) }
 
     it 'must set the number to nil' do
       die.reset
@@ -20,8 +20,8 @@ describe JustBackgammon::Die do
   end
 
   describe 'dice with the same numbers' do
-    let(:die_a) { JustBackgammon::Die.new(number: 1) }
-    let(:die_b) { JustBackgammon::Die.new(number: 1) }
+    let(:die_a) { JustBackgammon::Die.new(id: 1, number: 1) }
+    let(:die_b) { JustBackgammon::Die.new(id: 2, number: 1) }
 
     it 'must be equal' do
       assert_equal die_a, die_b
@@ -29,8 +29,8 @@ describe JustBackgammon::Die do
   end
 
   describe 'dice with different numbers' do
-    let(:die_a) { JustBackgammon::Die.new(number: 1) }
-    let(:die_b) { JustBackgammon::Die.new(number: 4) }
+    let(:die_a) { JustBackgammon::Die.new(id: 1, number: 1) }
+    let(:die_b) { JustBackgammon::Die.new(id: 2, number: 4) }
 
     it 'must not be equal' do
       refute_equal die_a, die_b
@@ -38,9 +38,9 @@ describe JustBackgammon::Die do
   end
 
   describe 'as json' do
-    let(:die) { JustBackgammon::Die.new(number: 1) }
+    let(:die) { JustBackgammon::Die.new(id: 1, number: 1) }
 
-    let(:json) { { number: 1 } }
+    let(:json) { { id: 1, number: 1 } }
 
     it 'must serialize the bar' do
       assert_equal json, die.as_json

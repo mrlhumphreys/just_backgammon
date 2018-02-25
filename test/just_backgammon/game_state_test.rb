@@ -6,20 +6,20 @@ describe JustBackgammon::GameState do
       current_player_number: 1,
       current_phase: 'move',
       dice: [
-        { number: 1 },
-        { number: 2 }
+        { id: 1, number: 1 },
+        { id: 2, number: 2 }
       ],
       bar: { pieces: [] },
       points: [
-        { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+        { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
         { number: 2, pieces: [] },
         { number: 3, pieces: [] },
         { number: 4, pieces: [] },
         { number: 5, pieces: [] },
-        { number: 6, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+        { number: 6, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}, {id: 5, owner: 2}, {id: 6, owner: 2}, {id: 7, owner: 2}, {id: 8, owner: 2}] },
         { number: 7, pieces: [] }
       ],
-      off_board: { pieces: [{owner: 2}] }
+      off_board: { pieces: [{id: 9, owner: 2}] }
     })
   }
 
@@ -28,14 +28,14 @@ describe JustBackgammon::GameState do
       current_player_number: 1,
       current_phase: 'move',
       dice: [
-        { number: 1 },
-        { number: 2 }
+        { id: 1, number: 1 },
+        { id: 2, number: 2 }
       ],
       bar: { pieces: [] },
       points: [
-        { number: 1, pieces: [{owner: 1}, {owner: 1}] },
-        { number: 2, pieces: [{owner: 2}, {owner: 2}] },
-        { number: 3, pieces: [{owner: 2}, {owner: 2}] }
+        { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
+        { number: 2, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}] },
+        { number: 3, pieces: [{id: 5, owner: 2}, {id: 6, owner: 2}] }
       ],
       off_board: { pieces: [] }
     })
@@ -46,12 +46,12 @@ describe JustBackgammon::GameState do
       current_player_number: 1,
       current_phase: 'roll',
       dice: [
-        { number: nil },
-        { number: nil }
+        { id: 1, number: nil },
+        { id: 2, number: nil }
       ],
       bar: { pieces: [] },
       points: [
-        { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+        { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
         { number: 2, pieces: [] },
         { number: 3, pieces: [] }
       ],
@@ -64,20 +64,20 @@ describe JustBackgammon::GameState do
       current_player_number: 1,
       current_phase: 'roll',
       dice: [
-        { number: nil },
-        { number: nil }
+        { id: 1, number: nil },
+        { id: 2, number: nil }
       ],
       bar: { pieces: [] },
       points: [
-        { number: 1, pieces: [{owner: 2}, {owner: 2}] },
+        { number: 1, pieces: [{id: 1, owner: 2}, {id: 2, owner: 2}] },
         { number: 2, pieces: [] },
         { number: 3, pieces: [] }
       ],
       off_board: {
         pieces: [
-          {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1},
-          {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1},
-          {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}
+          {id: 3, owner: 1}, {id: 4, owner: 1}, {id: 5, owner: 1}, {id: 6, owner: 1}, {id: 7, owner: 1},
+          {id: 8, owner: 1}, {id: 9, owner: 1}, {id: 10, owner: 1}, {id: 11, owner: 1}, {id: 12, owner: 1},
+          {id: 13, owner: 1}, {id: 14, owner: 1}, {id: 15, owner: 1}, {id: 16, owner: 1}, {id: 17, owner: 1}
         ]
       }
     })
@@ -89,14 +89,14 @@ describe JustBackgammon::GameState do
         current_player_number: 2,
         current_phase: 'move',
         dice: [
-          { number: 1 },
-          { number: 3 }
+          { id: 1, number: 1 },
+          { id: 2, number: 3 }
         ],
-        bar: { pieces: [{owner: 1}] },
+        bar: { pieces: [{id: 1, owner: 1}] },
         points: [
-          { number: 1, pieces: [{owner: 2}] }
+          { number: 1, pieces: [{id: 2, owner: 2}] }
         ],
-        off_board: { pieces: [{owner: 2}] }
+        off_board: { pieces: [{id: 3, owner: 2}] }
       }
     }
     let(:game_state) { JustBackgammon::GameState.new(arguments) }
@@ -347,12 +347,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] }
           ],
           off_board: { pieces: [] }
@@ -372,12 +372,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] }
           ],
           off_board: { pieces: [] }
@@ -397,12 +397,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
@@ -425,20 +425,20 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] },
-            { number: 6, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+            { number: 6, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}, {id: 5, owner: 2}, {id: 6, owner: 2}, {id: 7, owner: 2}, {id: 8, owner: 2}] },
             { number: 7, pieces: [] }
           ],
-          off_board: { pieces: [{owner: 2}] }
+          off_board: { pieces: [{id: 9, owner: 2}] }
         })
       }
       let(:list) { [ {from: 6, to: 7}, {from: 1, to: 2} ] }
@@ -455,20 +455,20 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 5 }
+            { id: 1, number: 1 },
+            { id: 2, number: 5 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] },
-            { number: 6, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+            { number: 6, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}, {id: 5, owner: 2}, {id: 6, owner: 2}, {id: 7, owner: 2}, {id: 8, owner: 2}] },
             { number: 7, pieces: [] }
           ],
-          off_board: { pieces: [{owner: 2}] }
+          off_board: { pieces: [{id: 9, owner: 2}] }
         })
       }
       let(:list) { [ {from: 1, to: 2}, {from: 1, to: 6} ] }
@@ -485,21 +485,21 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 5 }
+            { id: 1, number: 1 },
+            { id: 2, number: 5 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] },
-            { number: 6, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+            { number: 6, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}, {id: 5, owner: 2}, {id: 6, owner: 2}, {id: 7, owner: 2}, {id: 8, owner: 2}] },
             { number: 7, pieces: [] },
-            { number: 8, pieces: [{owner: 1}, {owner: 1}, {owner: 1}] }
+            { number: 8, pieces: [{id: 9, owner: 1}, {id: 10, owner: 1}, {id: 11, owner: 1}] }
           ],
-          off_board: { pieces: [{owner: 2}] }
+          off_board: { pieces: [{id: 12, owner: 2}] }
         })
       }
       let(:list) { [ {from: 1, to: 2}, {from: 8, to: 7} ] }
@@ -516,12 +516,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 5 }
+            { id: 1, number: 1 },
+            { id: 2, number: 5 }
           ],
-          bar: { pieces: [{owner: 1}] },
+          bar: { pieces: [{id: 1, owner: 1}] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 2, owner: 1}, {id: 3, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] }
           ],
@@ -542,12 +542,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
@@ -570,12 +570,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
@@ -598,13 +598,13 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
-            { number: 2, pieces: [{owner: 2}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
+            { number: 2, pieces: [{id: 3, owner: 2}] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] }
@@ -626,13 +626,13 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
           bar: { pieces: [] },
           points: [
-            { number: 1, pieces: [{owner: 1}, {owner: 1}] },
-            { number: 2, pieces: [{owner: 2}] },
+            { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
+            { number: 2, pieces: [{id: 3, owner: 2}] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] }
@@ -654,13 +654,13 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
-          bar: { pieces: [{owner: 1}, {owner: 1}] },
+          bar: { pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
           points: [
-            { number: 1, pieces: [{owner: 2}, {owner: 2}] },
-            { number: 2, pieces: [{owner: 2}, {owner: 2}] },
+            { number: 1, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}] },
+            { number: 2, pieces: [{id: 5, owner: 2}, {id: 6, owner: 2}] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
             { number: 5, pieces: [] }
@@ -682,12 +682,12 @@ describe JustBackgammon::GameState do
           current_player_number: 1,
           current_phase: 'move',
           dice: [
-            { number: 1 },
-            { number: 2 }
+            { id: 1, number: 1 },
+            { id: 2, number: 2 }
           ],
-          bar: { pieces: [{owner: 1}, {owner: 1}] },
+          bar: { pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
           points: [
-            { number: 1, pieces: [{owner: 2}, {owner: 2}] },
+            { number: 1, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}] },
             { number: 2, pieces: [] },
             { number: 3, pieces: [] },
             { number: 4, pieces: [] },
@@ -711,12 +711,12 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
-            bar: { pieces: [{owner: 1}] },
+            bar: { pieces: [{id: 1, owner: 1}] },
             points: [
-              { number: 1, pieces: [{owner: 1}] },
+              { number: 1, pieces: [{id: 2, owner: 1}] },
               { number: 2, pieces: [] },
               { number: 3, pieces: [] },
               { number: 4, pieces: [] },
@@ -739,12 +739,12 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
-            bar: { pieces: [{owner: 1}] },
+            bar: { pieces: [{id: 1, owner: 1}] },
             points: [
-              { number: 1, pieces: [{owner: 1}] },
+              { number: 1, pieces: [{id: 2, owner: 1}] },
               { number: 2, pieces: [] },
               { number: 3, pieces: [] },
               { number: 4, pieces: [] },
@@ -767,12 +767,12 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 1, pieces: [{owner: 1}] },
+              { number: 1, pieces: [{id: 1, owner: 1}] },
               { number: 2, pieces: [] },
               { number: 3, pieces: [] },
               { number: 4, pieces: [] },
@@ -797,14 +797,14 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 21, pieces: [{owner: 1}] },
+              { number: 21, pieces: [{id: 1, owner: 1}] },
               { number: 22, pieces: [] },
-              { number: 23, pieces: [{owner: 1}] }
+              { number: 23, pieces: [{id: 2, owner: 1}] }
             ],
             off_board: { pieces: [] }
           })
@@ -823,14 +823,14 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 4 },
-              { number: 2 }
+              { id: 1, number: 4 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 21, pieces: [{owner: 1}] },
+              { number: 21, pieces: [{id: 1, owner: 1}] },
               { number: 22, pieces: [] },
-              { number: 23, pieces: [{owner: 1}] }
+              { number: 23, pieces: [{id: 2, owner: 1}] }
             ],
             off_board: { pieces: [] }
           })
@@ -849,14 +849,14 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 20, pieces: [{owner: 1}] },
+              { number: 20, pieces: [{id: 1, owner: 1}] },
               { number: 21, pieces: [] },
-              { number: 22, pieces: [{owner: 1}] },
+              { number: 22, pieces: [{id: 2, owner: 1}] },
               { number: 23, pieces: [] }
             ],
             off_board: { pieces: [] }
@@ -876,14 +876,14 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 6 },
-              { number: 5 }
+              { id: 1, number: 6 },
+              { id: 2, number: 5 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 20, pieces: [{owner: 1}] },
+              { number: 20, pieces: [{id: 1, owner: 1}] },
               { number: 21, pieces: [] },
-              { number: 22, pieces: [{owner: 1}] },
+              { number: 22, pieces: [{id: 2, owner: 1}] },
               { number: 23, pieces: [] }
             ],
             off_board: { pieces: [] }
@@ -903,15 +903,15 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 1 },
-              { number: 2 }
+              { id: 1, number: 1 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 12, pieces: [{owner: 1}] },
-              { number: 21, pieces: [{owner: 1}] },
+              { number: 12, pieces: [{id: 1, owner: 1}] },
+              { number: 21, pieces: [{id: 2, owner: 1}] },
               { number: 22, pieces: [] },
-              { number: 23, pieces: [{owner: 1}] }
+              { number: 23, pieces: [{id: 3, owner: 1}] }
             ],
             off_board: { pieces: [] }
           })
@@ -930,13 +930,13 @@ describe JustBackgammon::GameState do
             current_player_number: 1,
             current_phase: 'move',
             dice: [
-              { number: 6 },
-              { number: 2 }
+              { id: 1, number: 6 },
+              { id: 2, number: 2 }
             ],
             bar: { pieces: [] },
             points: [
-              { number: 18, pieces: [{owner: 1}] },
-              { number: 19, pieces: [{owner: 1}] },
+              { number: 18, pieces: [{id: 1, owner: 1}] },
+              { number: 19, pieces: [{id: 2, owner: 1}] },
               { number: 20, pieces: [] }
             ],
             off_board: { pieces: [] }
@@ -973,35 +973,35 @@ describe JustBackgammon::GameState do
       { current_player_number: 1,
         current_phase: "roll",
         dice: [
-          { number: nil },
-          { number: nil }
+          { id: 1, number: nil },
+          { id: 2, number: nil }
         ],
         bar: { pieces: [] },
         points: [
-          { number: 1, pieces: [ { owner: 1 }, { owner: 1 } ] },
+          { number: 1, pieces: [ { id: 1, owner: 1 }, { id: 2, owner: 1 } ] },
           { number: 2, pieces: [] },
           { number: 3, pieces: [] },
           { number: 4, pieces: [] },
           { number: 5, pieces: [] },
-          { number: 6, pieces: [ { owner: 2 }, { owner: 2 }, { owner: 2 }, { owner: 2 }, { owner: 2 } ] },
+          { number: 6, pieces: [ { id: 3, owner: 2 }, { id: 4, owner: 2 }, { id: 5, owner: 2 }, { id: 6, owner: 2 }, { id: 7, owner: 2 } ] },
           { number: 7, pieces: [] },
-          { number: 8, pieces: [ { owner: 2 }, { owner: 2 }, { owner: 2 } ] },
+          { number: 8, pieces: [ { id: 8, owner: 2 }, { id: 9, owner: 2 }, { id: 10, owner: 2 } ] },
           { number: 9, pieces: [] },
           { number: 10, pieces: [] },
           { number: 11, pieces: [] },
-          { number: 12, pieces: [ { owner: 1 }, { owner: 1 }, { owner: 1 }, { owner: 1 }, { owner: 1 } ] },
-          { number: 13, pieces: [ { owner: 2 }, { owner: 2 }, { owner: 2 }, { owner: 2 }, { owner: 2 } ] },
+          { number: 12, pieces: [ { id: 11, owner: 1 }, { id: 12, owner: 1 }, { id: 13, owner: 1 }, { id: 14, owner: 1 }, { id: 15, owner: 1 } ] },
+          { number: 13, pieces: [ { id: 16, owner: 2 }, { id: 17, owner: 2 }, { id: 18, owner: 2 }, { id: 19, owner: 2 }, { id: 20, owner: 2 } ] },
           { number: 14, pieces: [] },
           { number: 15, pieces: [] },
           { number: 16, pieces: [] },
-          { number: 17, pieces: [ { owner: 1 }, { owner: 1 }, { owner: 1 }, ] },
+          { number: 17, pieces: [ { id: 21, owner: 1 }, { id: 22, owner: 1 }, { id: 23, owner: 1 }, ] },
           { number: 18, pieces: [] },
-          { number: 19, pieces: [ { owner: 1 }, { owner: 1 }, { owner: 1 }, { owner: 1 }, { owner: 1} ] },
+          { number: 19, pieces: [ { id: 24, owner: 1 }, { id: 25, owner: 1 }, { id: 26, owner: 1 }, { id: 27, owner: 1 }, { id: 28, owner: 1} ] },
           { number: 20, pieces: [] },
           { number: 21, pieces: [] },
           { number: 22, pieces: [] },
           { number: 23, pieces: [] },
-          { number: 24, pieces: [ { owner: 2 }, { owner: 2 } ] }
+          { number: 24, pieces: [ { id: 29, owner: 2 }, { id: 30, owner: 2 } ] }
         ],
         off_board: { pieces: [] }
       }

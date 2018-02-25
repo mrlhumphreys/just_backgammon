@@ -8,10 +8,10 @@ describe JustBackgammon::MoveList do
   let(:move_list) { JustBackgammon::MoveList.new(moves: [move_a, move_b]) }
 
   describe 'an ordinary move list' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{owner: player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{id: 2, owner: player}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 4, pieces: []) }
 
     it 'must not be missing a point' do
@@ -55,7 +55,7 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with empty froms that match tos' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
     let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: []) }
@@ -81,10 +81,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list a piece moving through a blot' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: player}]) }
-    let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: [{owner: other_player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: player}]) }
+    let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: [{id: 2, owner: other_player}]) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: [{owner: other_player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: [{id: 3, owner: other_player}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 3, pieces: []) }
 
     it 'must move the same piece multiple times' do
@@ -93,10 +93,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with a move missing a point' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{owner: player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{id: 2, owner: player}]) }
     let(:to_b) { nil }
 
     it 'must be missing a point' do
@@ -108,7 +108,7 @@ describe JustBackgammon::MoveList do
     let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: []) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{owner: player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{id: 1, owner: player}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 4, pieces: []) }
 
     it 'must have an empty point' do
@@ -120,7 +120,7 @@ describe JustBackgammon::MoveList do
     let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: []) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: [{owner: player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: player}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 3, pieces: []) }
 
     it 'must have an empty point' do
@@ -129,10 +129,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with points owned by an opponent' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: other_player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: other_player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{owner: player}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{id: 2, owner: player}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 4, pieces: []) }
 
     it 'must have a point owned by an opponent' do
@@ -141,7 +141,7 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with a combined move and points owned by an opponent' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: other_player}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: other_player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
     let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: []) }
@@ -165,7 +165,7 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with a bar with pieces owned by player' do
-    let(:from_a) { JustBackgammon::Bar.new(pieces: [{owner: player}]) }
+    let(:from_a) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: player}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
     let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: []) }
@@ -177,8 +177,8 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with any blocked' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: 1}]) }
-    let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: [{owner: 2}, {owner: 2}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: [{id: 2, owner: 2}, {id: 3, owner: 2}]) }
 
     let(:from_b) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:to_b) { JustBackgammon::Point.new(number: 3, pieces: []) }
@@ -189,7 +189,7 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with any blocked' do
-    let(:from_a) { JustBackgammon::Point.new(number: 2, pieces: [{owner: 1}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: 1}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 1, pieces: []) }
 
     let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: []) }
@@ -201,10 +201,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with one bearing off' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: 1}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 24, pieces: [{owner: 1}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 24, pieces: [{id: 2, owner: 1}]) }
     let(:to_b) { JustBackgammon::OffBoard.new(pieces: []) }
 
     it 'must have any blocked' do
@@ -213,10 +213,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move list with all moves from the bar' do
-    let(:from_a) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:from_a) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:from_b) { JustBackgammon::Bar.new(pieces: [{id: 3, owner: 1}, {id: 4, owner: 1}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 3, pieces: []) }
 
     it 'must be all from the bar' do
@@ -225,10 +225,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'a move with two moves from bar' do
-    let(:from_a) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:from_a) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:from_b) { JustBackgammon::Bar.new(pieces: [{id: 3, owner: 1}, {id: 4, owner: 1}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 1, pieces: []) }
 
     it 'must have two moves from bar' do
@@ -237,10 +237,10 @@ describe JustBackgammon::MoveList do
   end
 
   describe 'absolute distance' do
-    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{owner: 1}]) }
+    let(:from_a) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
     let(:to_a) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
-    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{owner: 1}]) }
+    let(:from_b) { JustBackgammon::Point.new(number: 3, pieces: [{id: 2, owner: 1}]) }
     let(:to_b) { JustBackgammon::Point.new(number: 5, pieces: []) }
 
     it 'must return the absolute distances of each move' do

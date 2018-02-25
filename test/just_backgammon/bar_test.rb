@@ -14,7 +14,7 @@ describe JustBackgammon::Bar do
   end
 
   describe 'pieces owned by player' do
-    let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:bar) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
     let(:pieces) { bar.pieces_owned_by_player(1) }
 
     it 'must return the pieces owned by the player' do
@@ -24,7 +24,7 @@ describe JustBackgammon::Bar do
   end
 
   describe 'number of pieces owned by player' do
-    let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:bar) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
 
     it 'must return the size of pieces owned by player' do
       assert_equal 2, bar.number_of_pieces_owned_by_player(1)
@@ -32,7 +32,7 @@ describe JustBackgammon::Bar do
   end
 
   describe 'a bar with pieces owned by a player' do
-    let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:bar) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
 
     it 'must not be empty for that player' do
       refute bar.empty_for_player?(1)
@@ -52,7 +52,7 @@ describe JustBackgammon::Bar do
   end
 
   describe 'pop' do
-    let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 2}]) }
+    let(:bar) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 2}]) }
 
     it 'must remove a piece from the bar for that player' do
       bar.pop(1)
@@ -67,8 +67,8 @@ describe JustBackgammon::Bar do
   end
 
   describe 'push' do
-    let(:piece) { JustBackgammon::Piece.new(owner: 1) }
-    let(:bar) { JustBackgammon::Bar.new(pieces: [{owner: 1}, {owner: 2}]) }
+    let(:piece) { JustBackgammon::Piece.new(id: 1, owner: 1) }
+    let(:bar) { JustBackgammon::Bar.new(pieces: [{id: 2, owner: 1}, {id: 3, owner: 2}]) }
 
     it 'must push the piece onto the bar' do
       bar.push(piece)

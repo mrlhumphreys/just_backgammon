@@ -2,7 +2,7 @@ require "test_helper"
 
 describe JustBackgammon::DiceSet do
   describe 'find_by_number' do
-    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{number: 1}, {number: 4}]) }
+    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: 1}, {id: 2, number: 4}]) }
 
     it 'must return the die matching the number' do
       die = dice_set.find_by_number(4)
@@ -11,7 +11,7 @@ describe JustBackgammon::DiceSet do
   end
 
   describe 'numbers' do
-    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{number: 1}, {number: 4}]) }
+    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: 1}, {id: 2, number: 4}]) }
 
     it 'must return the numbers of the dice' do
       assert_equal [1, 4], dice_set.numbers
@@ -19,7 +19,7 @@ describe JustBackgammon::DiceSet do
   end
 
   describe 'roll' do
-    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{number: nil}, {number: nil}]) }
+    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: nil}, {id: 2, number: nil}]) }
 
     it 'must roll each dice' do
       dice_set.roll
@@ -40,7 +40,7 @@ describe JustBackgammon::DiceSet do
   end
 
   describe 'reset' do
-    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{number: 1}, {number: 1}, {number: 1}, {number: 1}]) }
+    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: 1}, {id: 2, number: 1}, {id: 3, number: 1}, {id: 4, number: 1}]) }
 
     it 'must reset all dice' do
       dice_set.reset
@@ -54,8 +54,8 @@ describe JustBackgammon::DiceSet do
   end
 
   describe 'as json' do
-    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{number: 1}, {number: 4}]) }
-    let(:json) { [{number: 1}, {number: 4}] }
+    let(:dice_set) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: 1}, {id: 2, number: 4}]) }
+    let(:json) { [{id: 1, number: 1}, {id: 2, number: 4}] }
 
     it 'must return the dice as json' do
       assert_equal json, dice_set.as_json

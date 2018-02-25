@@ -10,15 +10,22 @@ module JustBackgammon
 
     # A new instance of Piece.
     #
+    # @param [Fixnum] id
+    #   The identifier of the piece.
+    #
     # @param [Fixnum] owner
     #   The owner of the piece.
     #
     # ==== Example:
     #   # Instantiates a new Piece
-    #   JustBackgammon::Piece.new(1)
-    def initialize(owner:)
+    #   JustBackgammon::Piece.new(id: 1, owner: 1)
+    def initialize(id: , owner:)
+      @id = id
       @owner = owner
     end
+
+    # @return [Fixnum] the identifier of the piece.
+    attr_reader :id
 
     # @return [Fixnum] the owner of the piece
     attr_reader :owner
@@ -27,7 +34,7 @@ module JustBackgammon
     #
     # @return [Hash]
     def as_json
-      { owner: owner }
+      { id: id, owner: owner }
     end
   end
 end

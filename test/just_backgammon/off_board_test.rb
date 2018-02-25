@@ -11,7 +11,7 @@ describe JustBackgammon::OffBoard do
   end
 
   describe 'pieces owned by player' do
-    let(:off_board) { JustBackgammon::OffBoard.new(pieces: [{owner: 1}, {owner: 1}]) }
+    let(:off_board) { JustBackgammon::OffBoard.new(pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}]) }
     let(:pieces) { off_board.pieces_owned_by_player(1) }
 
     it 'must return the pieces owned by the player' do
@@ -23,7 +23,7 @@ describe JustBackgammon::OffBoard do
   describe 'number of pieces owned by player' do
     let(:player) { 1 }
     let(:other_player) { 2 }
-    let(:off_board) { JustBackgammon::OffBoard.new(pieces: [{owner: player}, {owner: player}, {owner: other_player}]) }
+    let(:off_board) { JustBackgammon::OffBoard.new(pieces: [{id: 1, owner: player}, {id: 2, owner: player}, {id: 3, owner: other_player}]) }
 
     it 'must return the number of pieces owned by the player' do
       assert_equal 2, off_board.number_of_pieces_owned_by_player(player)
@@ -32,7 +32,7 @@ describe JustBackgammon::OffBoard do
 
   describe 'push' do
     let(:off_board) { JustBackgammon::OffBoard.new(pieces: []) }
-    let(:piece) { JustBackgammon::Piece.new(owner: 1) }
+    let(:piece) { JustBackgammon::Piece.new(id: 1, owner: 1) }
 
     it 'must add the piece to off board' do
       off_board.push(piece)

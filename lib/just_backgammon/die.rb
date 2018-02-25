@@ -10,15 +10,22 @@ module JustBackgammon
 
     # A new instance of Die.
     #
+    # @param [Fixnum] id
+    #   The identifier of the die.
+    #
     # @param [Fixnum, NilClass] number
     #   The number of the die. Returns nil if not yet rolled.
     #
     # ==== Example:
     #   # Instantiates a new Die
-    #   JustBackgammon::Die.new(number: 1)
-    def initialize(number:)
+    #   JustBackgammon::Die.new(id: 1, number: 1)
+    def initialize(id: , number:)
+      @id = id
       @number = number
     end
+
+    # @return [Fixnum] the identifier of the die.
+    attr_reader :id
 
     # @return [Fixnum] the number of the die. Returns nil if not yet rolled
     attr_reader :number
@@ -48,7 +55,7 @@ module JustBackgammon
     #
     # @return [Hash]
     def as_json
-      { number: number }
+      { id: id, number: number }
     end
   end
 end

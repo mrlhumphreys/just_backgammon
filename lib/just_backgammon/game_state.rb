@@ -90,38 +90,38 @@ module JustBackgammon
         current_player_number: 1,
         current_phase: ROLL,
         dice: [
-          { number: nil },
-          { number: nil }
+          { id: 1, number: nil },
+          { id: 2, number: nil }
         ],
         bar: { pieces: [] },
         points: [
-          { number: 1, pieces: [{owner: 1}, {owner: 1}] },
+          { number: 1, pieces: [{id: 1, owner: 1}, {id: 2, owner: 1}] },
           { number: 2, pieces: [] },
           { number: 3, pieces: [] },
           { number: 4, pieces: [] },
           { number: 5, pieces: [] },
-          { number: 6, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+          { number: 6, pieces: [{id: 3, owner: 2}, {id: 4, owner: 2}, {id: 5, owner: 2}, {id: 6, owner: 2}, {id: 7, owner: 2}] },
 
           { number: 7, pieces: [] },
-          { number: 8, pieces: [{owner: 2}, {owner: 2}, {owner: 2}] },
+          { number: 8, pieces: [{id: 8, owner: 2}, {id: 9, owner: 2}, {id: 10, owner: 2}] },
           { number: 9, pieces: [] },
           { number: 10, pieces: [] },
           { number: 11, pieces: [] },
-          { number: 12, pieces: [{owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}] },
+          { number: 12, pieces: [{id: 11, owner: 1}, {id: 12, owner: 1}, {id: 13, owner: 1}, {id: 14, owner: 1}, {id: 15, owner: 1}] },
 
-          { number: 13, pieces: [{owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}, {owner: 2}] },
+          { number: 13, pieces: [{id: 16, owner: 2}, {id: 17, owner: 2}, {id: 18, owner: 2}, {id: 19, owner: 2}, {id: 20, owner: 2}] },
           { number: 14, pieces: [] },
           { number: 15, pieces: [] },
           { number: 16, pieces: [] },
-          { number: 17, pieces: [{owner: 1}, {owner: 1}, {owner: 1}] },
+          { number: 17, pieces: [{id: 21, owner: 1}, {id: 22, owner: 1}, {id: 23, owner: 1}] },
           { number: 18, pieces: [] },
 
-          { number: 19, pieces: [{owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}, {owner: 1}] },
+          { number: 19, pieces: [{id: 24, owner: 1}, {id: 25, owner: 1}, {id: 26, owner: 1}, {id: 27, owner: 1}, {id: 28, owner: 1}] },
           { number: 20, pieces: [] },
           { number: 21, pieces: [] },
           { number: 22, pieces: [] },
           { number: 23, pieces: [] },
-          { number: 24, pieces: [{owner: 2}, {owner: 2}] },
+          { number: 24, pieces: [{id: 29, owner: 2}, {id: 30, owner: 2}] },
         ],
         off_board: { pieces: [] }
       })
