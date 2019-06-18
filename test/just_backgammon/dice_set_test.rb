@@ -36,6 +36,16 @@ describe JustBackgammon::DiceSet do
           end
         end
       end
+
+      it 'must give them all unique ids' do
+        mock_random = Minitest::Mock.new
+        mock_random.stub :rand, 0 do
+          Random.stub :new, mock_random do
+            dice_set.roll
+            assert_equal [1,2,3,4], dice_set.dice.map(&:id)
+          end
+        end
+      end
     end
   end
 

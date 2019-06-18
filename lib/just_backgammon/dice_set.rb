@@ -51,7 +51,8 @@ module JustBackgammon
     def roll
       @dice.each(&:roll)
       if @dice.first == @dice.last
-        @dice.concat(@dice)
+        dup_dice = @dice.map { |d| Die.new(id: d.id + 2, number: d.number) }
+        @dice.concat(dup_dice)
       end
     end
 
