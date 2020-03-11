@@ -18,11 +18,11 @@ module JustBackgammon
     def load(argument)
       case argument
       when Hash
-        self.new(argument)
+        self.new(**argument)
       when Array
         case
         when argument.all? { |o| o.instance_of?(Hash) }
-          argument.map { |o| self.new(o) }
+          argument.map { |o| self.new(**o) }
         when argument.all? { |o| o.instance_of?(self) }
           argument
         else

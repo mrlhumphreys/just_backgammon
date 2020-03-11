@@ -2,7 +2,7 @@ require "test_helper"
 
 describe JustBackgammon::GameState do
   let(:game_in_move_phase) {
-    JustBackgammon::GameState.new({
+    JustBackgammon::GameState.new(
       current_player_number: 1,
       current_phase: 'move',
       dice: [
@@ -20,11 +20,11 @@ describe JustBackgammon::GameState do
         { number: 7, pieces: [] }
       ],
       off_board: { pieces: [{id: 9, owner: 2}] }
-    })
+    )
   }
 
   let(:game_with_no_moves) {
-    JustBackgammon::GameState.new({
+    JustBackgammon::GameState.new(
       current_player_number: 1,
       current_phase: 'move',
       dice: [
@@ -38,11 +38,11 @@ describe JustBackgammon::GameState do
         { number: 3, pieces: [{id: 5, owner: 2}, {id: 6, owner: 2}] }
       ],
       off_board: { pieces: [] }
-    })
+    )
   }
 
   let(:game_in_roll_phase) {
-    JustBackgammon::GameState.new({
+    JustBackgammon::GameState.new(
       current_player_number: 1,
       current_phase: 'roll',
       dice: [
@@ -56,11 +56,11 @@ describe JustBackgammon::GameState do
         { number: 3, pieces: [] }
       ],
       off_board: { pieces: [] }
-    })
+    )
   }
 
   let(:winning_game) {
-    JustBackgammon::GameState.new({
+    JustBackgammon::GameState.new(
       current_player_number: 1,
       current_phase: 'roll',
       dice: [
@@ -80,7 +80,7 @@ describe JustBackgammon::GameState do
           {id: 13, owner: 1}, {id: 14, owner: 1}, {id: 15, owner: 1}, {id: 16, owner: 1}, {id: 17, owner: 1}
         ]
       }
-    })
+    )
   }
 
   describe 'initializing a game' do
@@ -99,7 +99,7 @@ describe JustBackgammon::GameState do
         off_board: { pieces: [{id: 3, owner: 2}] }
       }
     }
-    let(:game_state) { JustBackgammon::GameState.new(arguments) }
+    let(:game_state) { JustBackgammon::GameState.new(**arguments) }
 
     it 'must set the board with the arguments passed' do
       assert_equal 2, game_state.current_player_number
@@ -343,7 +343,7 @@ describe JustBackgammon::GameState do
 
     describe 'with from that does not exist' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -356,7 +356,7 @@ describe JustBackgammon::GameState do
             { number: 2, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: -50, to: 1}, {from: 1, to: 2} ] }
 
@@ -368,7 +368,7 @@ describe JustBackgammon::GameState do
 
     describe 'with to that does not exist' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -381,7 +381,7 @@ describe JustBackgammon::GameState do
             { number: 2, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 50}, {from: 1, to: 2} ] }
 
@@ -393,7 +393,7 @@ describe JustBackgammon::GameState do
 
     describe 'with an empty from' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -409,7 +409,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 3, to: 5} ] }
 
@@ -421,7 +421,7 @@ describe JustBackgammon::GameState do
 
     describe 'with a from not owned by the player' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -439,7 +439,7 @@ describe JustBackgammon::GameState do
             { number: 7, pieces: [] }
           ],
           off_board: { pieces: [{id: 9, owner: 2}] }
-        })
+        )
       }
       let(:list) { [ {from: 6, to: 7}, {from: 1, to: 2} ] }
 
@@ -451,7 +451,7 @@ describe JustBackgammon::GameState do
 
     describe 'with a move blocked by the opponent' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -469,7 +469,7 @@ describe JustBackgammon::GameState do
             { number: 7, pieces: [] }
           ],
           off_board: { pieces: [{id: 9, owner: 2}] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 1, to: 6} ] }
 
@@ -481,7 +481,7 @@ describe JustBackgammon::GameState do
 
     describe 'with a move in the wrong direction' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -500,7 +500,7 @@ describe JustBackgammon::GameState do
             { number: 8, pieces: [{id: 9, owner: 1}, {id: 10, owner: 1}, {id: 11, owner: 1}] }
           ],
           off_board: { pieces: [{id: 12, owner: 2}] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 8, to: 7} ] }
 
@@ -512,7 +512,7 @@ describe JustBackgammon::GameState do
 
     describe 'with the number of pieces on the bar exceeding the moves from the bar' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -526,7 +526,7 @@ describe JustBackgammon::GameState do
             { number: 3, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 1, to: 3} ] }
 
@@ -538,7 +538,7 @@ describe JustBackgammon::GameState do
 
     describe 'with move lengths not matching dice' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -554,7 +554,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 1, to: 5} ] }
 
@@ -566,7 +566,7 @@ describe JustBackgammon::GameState do
 
     describe 'with move that moves the same piece twice' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -582,7 +582,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 2, to: 4} ] }
 
@@ -594,7 +594,7 @@ describe JustBackgammon::GameState do
 
     describe 'with move that moves the same piece twice and hits a blot' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -610,7 +610,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 2, to: 4} ] }
 
@@ -622,7 +622,7 @@ describe JustBackgammon::GameState do
 
     describe 'with move on to a blot' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -638,7 +638,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [ {from: 1, to: 2}, {from: 1, to: 3} ] }
 
@@ -650,7 +650,7 @@ describe JustBackgammon::GameState do
 
     describe 'an empty move when no moves are possible' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -666,7 +666,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [] }
 
@@ -678,7 +678,7 @@ describe JustBackgammon::GameState do
 
     describe 'a partial move when some moves are possible' do
       let(:game) {
-        JustBackgammon::GameState.new({
+        JustBackgammon::GameState.new(
           current_player_number: 1,
           current_phase: 'move',
           dice: [
@@ -694,7 +694,7 @@ describe JustBackgammon::GameState do
             { number: 5, pieces: [] }
           ],
           off_board: { pieces: [] }
-        })
+        )
       }
       let(:list) { [{from: 'bar', to: 2}] }
 
@@ -707,7 +707,7 @@ describe JustBackgammon::GameState do
     describe 'from a bar' do
       describe 'with a valid move' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -723,7 +723,7 @@ describe JustBackgammon::GameState do
               { number: 5, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 'bar', to: 1}, {from: 1, to: 3} ] }
 
@@ -735,7 +735,7 @@ describe JustBackgammon::GameState do
 
       describe 'with move lengths not matching dice' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -751,7 +751,7 @@ describe JustBackgammon::GameState do
               { number: 5, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 'bar', to: 4}, {from: 1, to: 2} ] }
 
@@ -763,7 +763,7 @@ describe JustBackgammon::GameState do
 
       describe 'from an empty bar' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -779,7 +779,7 @@ describe JustBackgammon::GameState do
               { number: 5, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 'bar', to: 1}, {from: 1, to: 3} ] }
 
@@ -793,7 +793,7 @@ describe JustBackgammon::GameState do
     describe 'to off the board' do
       describe 'with a valid move' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -807,7 +807,7 @@ describe JustBackgammon::GameState do
               { number: 23, pieces: [{id: 2, owner: 1}] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 23, to: 'off_board'}, {from: 21, to: 22} ] }
 
@@ -819,7 +819,7 @@ describe JustBackgammon::GameState do
 
       describe 'with both off board' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -833,7 +833,7 @@ describe JustBackgammon::GameState do
               { number: 23, pieces: [{id: 2, owner: 1}] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 23, to: 'off_board'}, {from: 21, to: 'off_board'} ] }
 
@@ -845,7 +845,7 @@ describe JustBackgammon::GameState do
 
       describe 'without dice matching' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -860,7 +860,7 @@ describe JustBackgammon::GameState do
               { number: 23, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 22, to: 'off_board'}, {from: 20, to: 21} ] }
 
@@ -872,7 +872,7 @@ describe JustBackgammon::GameState do
 
       describe 'with the dice larger than the back point' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -887,7 +887,7 @@ describe JustBackgammon::GameState do
               { number: 23, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 20, to: 'off_board'}, {from: 22, to: 'off_board'} ] }
 
@@ -899,7 +899,7 @@ describe JustBackgammon::GameState do
 
       describe 'while pieces are still home' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -914,7 +914,7 @@ describe JustBackgammon::GameState do
               { number: 23, pieces: [{id: 3, owner: 1}] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
         let(:list) { [ {from: 23, to: 'off_board'}, {from: 21, to: 22} ] }
 
@@ -926,7 +926,7 @@ describe JustBackgammon::GameState do
 
       describe 'with some moves off board and some not' do
         let(:game) {
-          JustBackgammon::GameState.new({
+          JustBackgammon::GameState.new(
             current_player_number: 1,
             current_phase: 'move',
             dice: [
@@ -940,7 +940,7 @@ describe JustBackgammon::GameState do
               { number: 20, pieces: [] }
             ],
             off_board: { pieces: [] }
-          })
+          )
         }
 
         let(:list) { [ {from: 18, to: 20}, {from: 19, to: 'off_board'} ] }

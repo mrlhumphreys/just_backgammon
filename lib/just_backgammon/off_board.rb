@@ -1,4 +1,3 @@
-require 'just_backgammon/off_board'
 require 'just_backgammon/piece'
 
 module JustBackgammon

@@ -55,7 +55,7 @@ describe JustBackgammon::Move do
       let(:to) { JustBackgammon::Point.new(number: 21, pieces: []) }
 
       it 'must have a distance equal to the difference between the two points' do
-        assert_equal -3, move.distance_for_player(player)
+        assert_equal(-3, move.distance_for_player(player))
       end
 
       it 'must have a absolute distance equal to the difference between the two points' do
@@ -68,7 +68,7 @@ describe JustBackgammon::Move do
       let(:to) { JustBackgammon::Point.new(number: 21, pieces: []) }
 
       it 'must have a distance equal to the difference between 0 and to' do
-        assert_equal -4, move.distance_for_player(player)
+        assert_equal(-4, move.distance_for_player(player))
       end
 
       it 'must have a absolute distance equal to the difference between 0 and to' do
@@ -81,7 +81,7 @@ describe JustBackgammon::Move do
       let(:to) { JustBackgammon::OffBoard.new(pieces: []) }
 
       it 'must have a distance equal to the difference between from and 25' do
-        assert_equal -2, move.distance_for_player(player)
+        assert_equal(-2, move.distance_for_player(player))
       end
 
       it 'must have a distance equal to the difference between from and 25' do

@@ -86,7 +86,7 @@ module JustBackgammon
     #
     # @return [GameState]
     def self.default
-      new({
+      new(
         current_player_number: 1,
         current_phase: ROLL,
         dice: [
@@ -124,7 +124,7 @@ module JustBackgammon
           { number: 24, pieces: [{id: 29, owner: 2}, {id: 30, owner: 2}] },
         ],
         off_board: { pieces: [] }
-      })
+      )
     end
 
     # @return [Fixnum] who's turn it is
@@ -311,7 +311,7 @@ module JustBackgammon
 
     def sanitize_list(move_list)  # :nodoc:
       moves = move_list.map do |move|
-        JustBackgammon::Move.new({ from: find_point(move[:from]),  to: find_point(move[:to]) })
+        JustBackgammon::Move.new(from: find_point(move[:from]),  to: find_point(move[:to]))
       end
       JustBackgammon::MoveList.new(moves: moves)
     end
