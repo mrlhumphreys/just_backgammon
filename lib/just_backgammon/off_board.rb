@@ -11,18 +11,18 @@ module JustBackgammon
     # A new instance of OffBoard.
     #
     # @param [Array<Hash>] pieces
-    #   All the pieces off board, each piece has an owner.
+    #   All the pieces off board, each piece has an player_number.
     #
     # ==== Example:
     #   # Instantiates a new OffBoard
     #   JustBackgammon::OffBoard.new({
-    #     pieces: [{owner: 1}, {owner: 1}]
+    #     pieces: [{player_number: 1}, {player_number: 1}]
     #   })
     def initialize(pieces:)
       @pieces = Piece.load(pieces)
     end
 
-    # @return [Array<Piece>] all the pieces on the bar, each piece has an owner
+    # @return [Array<Piece>] all the pieces on the bar, each piece has an player_number
     attr_reader :pieces
 
     # The identifier of the bar, returns the string 'bar'.
@@ -39,7 +39,7 @@ module JustBackgammon
     #
     # @return [Array<Piece>]
     def pieces_owned_by_player(player_number)
-      pieces.select { |p| p.owner == player_number }
+      pieces.select { |p| p.player_number == player_number }
     end
 
     # Number of pieces owned by the specified player.

@@ -12,7 +12,7 @@ describe JustBackgammon::PointSet do
   end
 
   describe 'when player 1 has a piece between points 1 to 18' do
-    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 9, pieces: [{id: 1, owner: 1}]}]) }
+    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 9, pieces: [{id: 1, player_number: 1}]}]) }
 
     it 'must have points with pieces that are not home' do
       assert_equal 1, point_set.not_home(1).size
@@ -24,7 +24,7 @@ describe JustBackgammon::PointSet do
   end
 
   describe 'when player 1 has no pieces between points 1 to 18' do
-    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 21, pieces: [{id: 1, owner: 1}]}]) }
+    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 21, pieces: [{id: 1, player_number: 1}]}]) }
 
     it 'must not have points with pieces that are not home' do
       assert_equal 0, point_set.not_home(1).size
@@ -36,7 +36,7 @@ describe JustBackgammon::PointSet do
   end
 
   describe 'when player 2 has a piece between points 7 to 24' do
-    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 16, pieces: [{id: 1, owner: 2}]}]) }
+    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 16, pieces: [{id: 1, player_number: 2}]}]) }
 
     it 'must have points with pieces that are not home' do
       assert_equal 1, point_set.not_home(2).size
@@ -48,7 +48,7 @@ describe JustBackgammon::PointSet do
   end
 
   describe 'when player 2 has no pieces between points 7 to 24' do
-    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 4, pieces: [{id: 1, owner: 2}]}]) }
+    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 4, pieces: [{id: 1, player_number: 2}]}]) }
 
     it 'must not have points with pieces that are not home' do
       assert_equal 0, point_set.not_home(2).size
@@ -63,8 +63,8 @@ describe JustBackgammon::PointSet do
     let(:point_set) {
       JustBackgammon::PointSet.new(
         points: [
-          {number: 1, pieces: [{id: 1, owner: 1}]},
-          {number: 2, pieces: [{id: 2, owner: 2}]},
+          {number: 1, pieces: [{id: 1, player_number: 1}]},
+          {number: 2, pieces: [{id: 2, player_number: 2}]},
           {number: 3, pieces: []}
         ]
       )
@@ -80,14 +80,14 @@ describe JustBackgammon::PointSet do
     let(:point_set) {
       JustBackgammon::PointSet.new(
         points: [
-          {number: 1, pieces: [{id: 1, owner: 1}]},
-          {number: 2, pieces: [{id: 2, owner: 2}, {id: 3, owner: 2}]},
+          {number: 1, pieces: [{id: 1, player_number: 1}]},
+          {number: 2, pieces: [{id: 2, player_number: 2}, {id: 3, player_number: 2}]},
           {number: 3, pieces: []}
         ]
       )
     }
 
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:dice) { JustBackgammon::DiceSet.new(dice: [{id: 1, number: 1}, {id: 2, number: 2}]) }
     let(:player_number) { 1 }
 
@@ -99,8 +99,8 @@ describe JustBackgammon::PointSet do
   end
 
   describe 'as_json' do
-    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 1, pieces: [{id: 1, owner: 1}]}]) }
-    let(:json) { [{number: 1, pieces: [{id: 1, owner: 1}]}] }
+    let(:point_set) { JustBackgammon::PointSet.new(points: [{number: 1, pieces: [{id: 1, player_number: 1}]}]) }
+    let(:json) { [{number: 1, pieces: [{id: 1, player_number: 1}]}] }
 
     it 'must return the serialized representation of the points' do
       assert_equal json, point_set.as_json

@@ -19,7 +19,7 @@ module JustBackgammon
     # ==== Example:
     #   # Instantiates a new Bar
     #   JustBackgammon::Bar.new({
-    #     pieces: [{owner: 1}, {owner: 1}]
+    #     pieces: [{player_number: 1}, {player_number: 1}]
     #   })
     def initialize(pieces:)
       @pieces = JustBackgammon::Piece.load(pieces)
@@ -44,7 +44,7 @@ module JustBackgammon
     #
     # @return [Array<Piece>]
     def pieces_owned_by_player(player_number)
-      pieces.select { |p| p.owner == player_number }
+      pieces.select { |p| p.player_number == player_number }
     end
 
     # Number of pieces owned by the specified player.
@@ -84,7 +84,7 @@ module JustBackgammon
     #
     # @return [Piece,NilClass]
     def pop(player_number)
-      p = pieces.find { |p| p.owner == player_number }
+      p = pieces.find { |p| p.player_number == player_number }
       pieces.delete(p)
     end
 

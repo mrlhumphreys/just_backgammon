@@ -22,7 +22,7 @@ module JustBackgammon
     # ==== Example:
     #   # Instantiates a new Point
     #   JustBackgammon::Point.new({
-    #     pieces: [{owner: 1}, {owner: 1}],
+    #     pieces: [{player_number: 1}, {player_number: 1}],
     #     number: 1
     #   })
     def initialize(pieces: , number:)
@@ -57,14 +57,14 @@ module JustBackgammon
     #
     # @return [Boolean]
     def owned_by_player?(player_number)
-      pieces.any? { |p| p.owner == player_number }
+      pieces.any? { |p| p.player_number == player_number }
     end
 
     # Checks if point has pieces owned by the opponent of the specified player.
     #
     # @return [Boolean]
     def owned_by_opponent?(player_number)
-      pieces.any? { |p| p.owner != player_number }
+      pieces.any? { |p| p.player_number != player_number }
     end
 
     # Checks if point has more than one piece.

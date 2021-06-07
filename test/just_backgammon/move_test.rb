@@ -7,7 +7,7 @@ describe JustBackgammon::Move do
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
     describe 'from and to are points' do
-      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
       let(:to) { JustBackgammon::Point.new(number: 4, pieces: []) }
 
       it 'must have a distance equal to the difference between the two points' do
@@ -20,7 +20,7 @@ describe JustBackgammon::Move do
     end
 
     describe 'from is the bar' do
-      let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}]) }
+      let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, player_number: 1}]) }
       let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
 
       it 'must have a distance equal to the difference between 0 and to' do
@@ -33,7 +33,7 @@ describe JustBackgammon::Move do
     end
 
     describe 'to is off board' do
-      let(:from) { JustBackgammon::Point.new(number: 23, pieces: [{id: 1, owner: 1}]) }
+      let(:from) { JustBackgammon::Point.new(number: 23, pieces: [{id: 1, player_number: 1}]) }
       let(:to) { JustBackgammon::OffBoard.new(pieces: []) }
 
       it 'must have a distance equal to the difference between from and 25' do
@@ -51,7 +51,7 @@ describe JustBackgammon::Move do
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
     describe 'from and to are points' do
-      let(:from) { JustBackgammon::Point.new(number: 24, pieces: [{id: 1, owner: 2}]) }
+      let(:from) { JustBackgammon::Point.new(number: 24, pieces: [{id: 1, player_number: 2}]) }
       let(:to) { JustBackgammon::Point.new(number: 21, pieces: []) }
 
       it 'must have a distance equal to the difference between the two points' do
@@ -64,7 +64,7 @@ describe JustBackgammon::Move do
     end
 
     describe 'from is the bar' do
-      let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 2}]) }
+      let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, player_number: 2}]) }
       let(:to) { JustBackgammon::Point.new(number: 21, pieces: []) }
 
       it 'must have a distance equal to the difference between 0 and to' do
@@ -77,7 +77,7 @@ describe JustBackgammon::Move do
     end
 
     describe 'to is off board' do
-      let(:from) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: 2}]) }
+      let(:from) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, player_number: 2}]) }
       let(:to) { JustBackgammon::OffBoard.new(pieces: []) }
 
       it 'must have a distance equal to the difference between from and 25' do
@@ -91,7 +91,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'an increasing move' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: player}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: player}]) }
     let(:to) { JustBackgammon::Point.new(number: 3, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -113,7 +113,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a decreasing move' do
-    let(:from) { JustBackgammon::Point.new(number: 3, pieces: [{id: 1, owner: player}]) }
+    let(:from) { JustBackgammon::Point.new(number: 3, pieces: [{id: 1, player_number: player}]) }
     let(:to) { JustBackgammon::Point.new(number: 1, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -136,7 +136,7 @@ describe JustBackgammon::Move do
 
   describe 'a move to off board' do
     let(:player) { 1 }
-    let(:from) { JustBackgammon::Point.new(number: 24, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 24, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::OffBoard.new(pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -147,7 +147,7 @@ describe JustBackgammon::Move do
 
   describe 'to an empty point' do
     let(:player) { 1 }
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -158,8 +158,8 @@ describe JustBackgammon::Move do
 
   describe 'a move to a point owned by the player' do
     let(:player) { 1 }
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
-    let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: 1}, {id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
+    let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, player_number: 1}, {id: 1, player_number: 1}]) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
     it 'must not be blocked' do
@@ -170,8 +170,8 @@ describe JustBackgammon::Move do
   describe 'a move to a point owned by the opponent' do
     describe 'and the point has one piece' do
       let(:player) { 1 }
-      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
-      let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: 2}]) }
+      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
+      let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, player_number: 2}]) }
       let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
       it 'must not be blocked' do
@@ -181,8 +181,8 @@ describe JustBackgammon::Move do
 
     describe 'and the point has more than one piece' do
       let(:player) { 1 }
-      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
-      let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, owner: 2}, {id: 1, owner: 2}]) }
+      let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
+      let(:to) { JustBackgammon::Point.new(number: 2, pieces: [{id: 1, player_number: 2}, {id: 1, player_number: 2}]) }
       let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
       it 'must be blocked' do
@@ -192,7 +192,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move with a from and to' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -212,7 +212,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move without a to' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { nil }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -222,7 +222,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move where the from is a point' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -232,7 +232,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move where the from is the bar' do
-    let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Bar.new(pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -242,7 +242,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move where the to is off board' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::OffBoard.new(pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
@@ -256,7 +256,7 @@ describe JustBackgammon::Move do
   end
 
   describe 'a move where the to is a point' do
-    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, owner: 1}]) }
+    let(:from) { JustBackgammon::Point.new(number: 1, pieces: [{id: 1, player_number: 1}]) }
     let(:to) { JustBackgammon::Point.new(number: 2, pieces: []) }
     let(:move) { JustBackgammon::Move.new(from: from, to: to) }
 
